@@ -13,7 +13,7 @@
 |   ├── routers/ # 路由目录
 |   ├── services/   # 业务层目录
 |   ├── utils/  # 工具类目录
-|   └── views/  # 模板目录
+|
 |—— test # 测试目录
 |──  package.json 
 |—— .eslintrc.js # 代码规范
