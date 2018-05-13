@@ -26,7 +26,7 @@
 ## npm scripts
 ```
 "scripts": {
-  "start": "nodemon ./server/services/index.js --exec babel-node",
+  "start": "nodemon ./server/app.js --exec babel-node",
   // 通过nodemon启动项目，并执行babel-node
   "test": "mocha --require babel-register --require babel-polyfill"
   // 启动mocha测试，并首先通过require引入babel-register和babel-polyfill
