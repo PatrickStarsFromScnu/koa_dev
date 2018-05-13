@@ -1,7 +1,7 @@
 // 一个测试例子+
 const supertest = require('supertest')
 const chai = require('chai')
-const app = require('../server/index')
+const app = require('../server/app')
 
 const expect = chai.expect
 const request = supertest(app.listen())
