@@ -1,4 +1,5 @@
 ## 项目目录
+```
 ├── config  # 配置文件
 ├── init # 数据库初始化目录
 │   ├── index.js # 初始化入口文件
@@ -17,7 +18,7 @@
 |──  package.json 
 |—— .eslintrc.js # 代码规范
 |—— .babelrc  # 配置es6
-
+```
 
 代码规范参考
 [JavaScript Standard Style](https://github.com/standard/standard/blob/master/RULES.md)
