@@ -1,57 +1,40 @@
-require('babel-polyfill')
 const Koa = require('koa')
-const fs = require('fs')
 const app = new Koa()
-/**
- * 用Promise封装异步读取文件方法
- * @param  {string} page html文件名称
- * @return {promise}
- */
-function render (page) {
-  return new Promise((resolve, reject) => {
-    let viewUrl = `./server/view/${page}`
-    fs.readFile(viewUrl, 'binary', (err, data) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(data)
-      }
-    })
-  })
-}
 
-/**
- * 根据URL获取HTML内容
- * @param  {string} url koa2上下文的url，ctx.url
- * @return {string}     获取HTML文件内容
- */
-async function route (url) {
-  let view = '404.html'
-  switch (url) {
-    case '/':
-      view = 'index.html'
-      break
-    case '/index':
-      view = 'index.html'
-      break
-    case '/todo':
-      view = 'todo.html'
-      break
-    case '/404':
-      view = '404.html'
-      break
-    default:
-      break
+const server = async (ctx, next) => {
+  let result = {
+    success: true,
+    data: null
   }
-  let html = await render(view)
-  return html
+
+  if (ctx.method === 'GET') {
+    if (ctx.url === '/getString.json') {
+      result.data = 'this is string data'
+    } else if (ctx.url === '/getNumber.json') {
+      result.data = 123456
+    } else {
+      result.success = false
+    }
+    ctx.body = result
+    next && next()
+  } else if (ctx.method === 'POST') {
+    if (ctx.url === '/postData.json') {
+      result.data = 'ok'
+    } else {
+      result.success = false
+    }
+    ctx.body = result
+    next && next()
+  } else {
+    ctx.body = 'hello world'
+    next && next()
+  }
 }
 
-app.use(async (ctx) => {
-  let url = ctx.request.url
-  let html = await route(url)
-  ctx.body = html
-})
+app.use(server)
 
-app.listen(3000)
-console.log('[demo] route-simple is starting at port 3000')
+module.exports = app
+
+app.listen(3000, () => {
+  console.log('[demo] test-unit is starting at port 3000')
+})
