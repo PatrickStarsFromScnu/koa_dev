@@ -1,6 +1,6 @@
 ## 架构介绍
-一个mvc架构，view层交由前端赋值。
-由关“注点分离”原则，将项目分为 controllers、models、routers、services层
+一个mvc架构，view层交由前端负责。
+由"关注点分离”原则，将项目分为 controllers、models、routers、services层
 > routers层
 分发来自前端的请求到对应的controller中
 
@@ -13,15 +13,15 @@
 > models
 通过ORM抽象成对象，对数据的实体定义
 
+## 功能模块分类
+功能方面按角色进行模块分类，比如 examiner.js 主试功能模块，subject.js 被试功能模块，public.js大众功能模块（一些没有具体归类的功能），还有 auth.js 权限模块
+
 ## 项目目录
 ```
 ├── config  # 配置文件
-├── init # 数据库初始化目录
-│   ├── index.js # 初始化入口文件
-│   ├── sql/    # sql脚本文件目录
-│   └── util/   # 工具操作目录
 ├── server  # 后端代码目录
 |   ├── app.js # 后端服务入口文件
+|   ├── codes/ # 提示语代码目录
 |   ├── controllers/    # 操作层目录
 |   ├── models/ # 数据模型model层目录
 |   ├── routers/ # 路由目录
@@ -81,6 +81,3 @@
   "supertest": "^3.0.0" // http请求测试库，用来请求api接口
 }
 ```
-
-#### 思考问题：
-IO瓶颈如何搞定，缓存该怎么用，架构的设计，分层的设计，数据库的优化，代码的调试，如何分析内存泄漏，单元测试，http原理，配置服务器部署，性能跟踪。
