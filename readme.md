@@ -1,3 +1,18 @@
+## 架构介绍
+一个mvc架构，view层交由前端赋值。
+由关“注点分离”原则，将项目分为 controllers、models、routers、services层
+> routers层
+分发来自前端的请求到对应的controller中
+
+> controllers层
+处理分发进来的请求，调用对应的services接口处理数据
+
+> service层
+提供对数据库的直接操作
+
+> models
+通过ORM抽象成对象，对数据的实体定义
+
 ## 功能模块分类
 功能方面按角色进行模块分类，比如 examiner.js 主试功能模块，subject.js 被试功能模块，public.js大众功能模块（一些没有具体归类的功能），还有 auth.js 权限模块
 
