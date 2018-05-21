@@ -1,6 +1,6 @@
 ## 架构介绍
-一个mvc架构，view层交由前端赋值。
-由关“注点分离”原则，将项目分为 controllers、models、routers、services层
+一个mvc架构，view层交由前端负责。
+由"关注点分离”原则，将项目分为 controllers、models、routers、services层
 > routers层
 分发来自前端的请求到对应的controller中
 
