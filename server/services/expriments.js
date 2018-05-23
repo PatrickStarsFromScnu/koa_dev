@@ -53,6 +53,7 @@ const addExperiment = ctx => {
   })
 }
 
+// 获取我发布的实验
 const getMyExperiments = ctx => {
   ctx.verifyParams({
     user_id: {
@@ -68,6 +69,7 @@ const getMyExperiments = ctx => {
   })
 }
 
+// 删除我发布的某个实验
 const deleteMyExperiment = ctx => {
   ctx.verifyParams({
     experiment_id: {
@@ -83,8 +85,49 @@ const deleteMyExperiment = ctx => {
   })
 }
 
+// 获取所有实验
+const getAllExperiments = ctx => {
+  return Experiments.findAll()
+}
+
+// 获取特定的实验
+const getExperiment = ctx => {
+  ctx.verifyParams({
+    experiment_id: {
+      type: 'string',
+      required: true
+    }
+  })
+  const body = ctx.query
+  return Experiments.findOne({
+    where: {
+      experiment_id: parseInt(body.experiment_id)
+    }
+  })
+}
+
+// 获取一类的实验
+const getExperimentsByType = ctx => {
+  ctx.verifyParams({
+    type: {
+      type: 'string',
+      required: true
+    }
+  })
+  const body = ctx.query
+  console.log(body)
+  return Experiments.findAll({
+    where: {
+      type: body.type
+    }
+  })
+}
+
 export default {
   addExperiment,
   getMyExperiments,
-  deleteMyExperiment
+  deleteMyExperiment,
+  getAllExperiments,
+  getExperiment,
+  getExperimentsByType
 }
