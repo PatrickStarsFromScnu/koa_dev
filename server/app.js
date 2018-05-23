@@ -17,11 +17,8 @@ app.use(koaStatic(
 ))
 
 app.use(routers.routes()).use(routers.allowedMethods())
-<<<<<<< HEAD
-=======
 
 export default app // 提供给test模块
->>>>>>> feature-examiner
 
 app.listen(config.server.port)
 console.log(`server is starting at port ${config.server.port} `)
