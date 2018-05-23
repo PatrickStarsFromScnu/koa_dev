@@ -56,7 +56,9 @@
   "koa-static": "^4.0.2"       // 处理静态资源服务
   "koa-session-minimal": "^3.0.4", // 提供了存储介质的读写接口
   "koa-mysql-session": "0.0.2",    // 提供MySQL数据库的session数据读写操作
-  "mysql": "^2.15.0"  // mysql模块，node操作MySQL的引擎，可以在node.js环境下对MySQL数据库进行建表，增、删、改、查等操作。
+  "mysql2": "^1.5.3", // mysql模块，node操作MySQL的引擎，可以在node.js环境下对MySQL数据库进行建表，增、删、改、查等操作。
+  "sequelize": "^4.37.8"，  // mysql的一个orm
+  "koa-parameter": "^3.0.1", 参数验证
 }
 "devDependencies": {
   "babel-cli": "^6.26.0",      // 引入babel-node，可以直接允许es6代码
