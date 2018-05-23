@@ -2,6 +2,7 @@ import path from 'path'
 import Koa from 'koa'
 import koaStatic from 'koa-static'
 import bodyParser from 'koa-bodyparser'
+import parameter from 'koa-parameter'
 
 import routers from './routers/index'
 import config from './../config/index'
@@ -9,6 +10,7 @@ import config from './../config/index'
 const app = new Koa()
 
 app.use(bodyParser())
+app.use(parameter(app))
 
 app.use(koaStatic(
   path.join(__dirname, './../static')
