@@ -20,12 +20,12 @@ function examinerTest () {
         })
         .expect(200)
     })
-    it('test getMyExperiment', async () => {
+    it.only('test getMyExperiment', async () => {
       await request
         .get('/examiner/getMyExperiment?user_id=1')
         .expect(200)
     })
-    it.only('test deleteMyExperiment', async () => {
+    it('test deleteMyExperiment', async () => {
       await request
         .post('/examiner/deleteMyExperiment')
         .send({

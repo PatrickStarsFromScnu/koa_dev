@@ -1,5 +1,5 @@
-// import examinerText from './examiner.test'
+import examinerText from './examiner.test'
 import publicText from './public.test'
 
-// examinerText()
+examinerText()
 publicText()
