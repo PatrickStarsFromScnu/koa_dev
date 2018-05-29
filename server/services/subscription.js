@@ -2,11 +2,11 @@ import Subscription from '../models/subscription'
 import Users from '../models/users'
 import Experiments from '../models/experiments'
 
-const addSubsciption = ctx =>  {
+const addSubsciption = ctx => {
   ctx.verifyParams({
     experiment_id: {
-    type: 'int',
-    required: true
+      type: 'int',
+      required: true
     },
     user_id: {
       type: 'int',
@@ -32,7 +32,7 @@ const getMySubsciption = ctx => {
     include: [{
       model: Experiments,
       through: {
-        where: { user_id : parseInt(body.user_id)}
+        where: { user_id: parseInt(body.user_id) }
       }
     }]
   })
@@ -42,4 +42,3 @@ export default {
   addSubsciption,
   getMySubsciption
 }
-
