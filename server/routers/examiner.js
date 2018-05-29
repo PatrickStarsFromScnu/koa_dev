@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature-public
 import Router from 'koa-router'
 import examinerController from '../controllers/examiner'
 
@@ -9,4 +12,7 @@ examinerRouter.get('/getMyExperiment', examinerController.getMyExperiments)
 examinerRouter.post('/deleteMyExperiment', examinerController.deleteMyExperiment)
 
 export default examinerRouter
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature-public
