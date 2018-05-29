@@ -6,10 +6,9 @@ const users = sequelize.define('users', {
   user_id: {
     type: Sequelize.INTEGER,
     primaryKey: true
-  }, 
+  },
   name: Sequelize.STRING,
-  picture: Sequelize.STRING,
- 
+  picture: Sequelize.STRING
 }, {
   timestamps: false
 })
