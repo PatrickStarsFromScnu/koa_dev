@@ -38,19 +38,36 @@ const addExperiment = ctx => {
     others: 'string'
   })
   const body = ctx.request.body
-  return Experiments.create({
-    publisher_id: body.publisher_id,
-    publisher_name: body.publisher_name,
-    title: body.title,
-    type: body.type,
-    duration: body.duration,
-    pay: body.pay,
-    position: body.position,
-    request: body.request || '',
-    period: body.period,
-    others: body.others || '',
-    time: body.time
-  })
+  if (body.experiment_id) {
+    return Experiments.create({
+      experiment_id: body.experiment_id,
+      publisher_id: body.publisher_id,
+      publisher_name: body.publisher_name,
+      title: body.title,
+      type: body.type,
+      duration: body.duration,
+      pay: body.pay,
+      position: body.position,
+      request: body.request || '',
+      period: body.period,
+      others: body.others || '',
+      time: body.time
+    })
+  } else {
+    return Experiments.create({
+      publisher_id: body.publisher_id,
+      publisher_name: body.publisher_name,
+      title: body.title,
+      type: body.type,
+      duration: body.duration,
+      pay: body.pay,
+      position: body.position,
+      request: body.request || '',
+      period: body.period,
+      others: body.others || '',
+      time: body.time
+    })
+  }
 }
 
 // 获取我发布的实验

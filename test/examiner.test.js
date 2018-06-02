@@ -2,10 +2,11 @@ import {request} from './register'
 
 function examinerTest () {
   describe('start test: examiner', () => {
-    it('test addExperiment', async () => {
+    it.only('test addExperiment', async () => {
       await request
         .post('/examiner/addExperiment')
         .send({
+          experiment_id: 1,
           publisher_id: 1,
           publisher_name: 'holy',
           title: 'one experiment',
@@ -20,7 +21,7 @@ function examinerTest () {
         })
         .expect(200)
     })
-    it.only('test getMyExperiment', async () => {
+    it('test getMyExperiment', async () => {
       await request
         .get('/examiner/getMyExperiment?user_id=1')
         .expect(200)

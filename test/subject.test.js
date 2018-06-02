@@ -15,8 +15,8 @@ function subjectTest () {
       await request
         .get('/subject/getMySubsciption?user_id=1')
         .expect(200)
-      })
     })
+  })
 }
 
 export default subjectTest
