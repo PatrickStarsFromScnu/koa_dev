@@ -2,6 +2,12 @@ import Experiments from '../models/experiments'
 import { checkToken } from '../utils/forToken'
 
 const addExperiment = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   ctx.verifyParams({
     publisher_id: {
       type: 'int',
@@ -79,7 +85,6 @@ const getMyExperiments = ctx => {
   } catch (err) {
     return err
   }
-  console.log('111111111111')
   ctx.verifyParams({
     user_id: {
       type: 'string',
@@ -96,6 +101,12 @@ const getMyExperiments = ctx => {
 
 // 删除我发布的某个实验
 const deleteMyExperiment = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   ctx.verifyParams({
     experiment_id: {
       type: 'int',
@@ -112,11 +123,23 @@ const deleteMyExperiment = ctx => {
 
 // 获取所有实验
 const getAllExperiments = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   return Experiments.findAll()
 }
 
 // 获取特定的实验
 const getExperiment = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   ctx.verifyParams({
     experiment_id: {
       type: 'string',
@@ -133,6 +156,12 @@ const getExperiment = ctx => {
 
 // 获取一类的实验
 const getExperimentsByType = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   ctx.verifyParams({
     type: {
       type: 'string',

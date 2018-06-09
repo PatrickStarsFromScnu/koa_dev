@@ -1,8 +1,15 @@
 import Subscription from '../models/subscription'
 import Users from '../models/users'
 import Experiments from '../models/experiments'
+import { checkToken } from '../utils/forToken'
 
 const addSubsciption = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   ctx.verifyParams({
     experiment_id: {
       type: 'int',
@@ -21,6 +28,12 @@ const addSubsciption = ctx => {
 }
 
 const getMySubsciption = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   ctx.verifyParams({
     user_id: {
       type: 'string',
