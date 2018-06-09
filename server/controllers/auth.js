@@ -1,4 +1,4 @@
-import authServices from '../services/auth'
+import usersServices from '../services/users'
 
 // 工厂模式，根据传入的值生成出对应的controller
 const controllerFactory = function (method) {
@@ -6,7 +6,7 @@ const controllerFactory = function (method) {
     let res
     try {
       // 根据对应的 method 执行对应 services 接口
-      res = await authServices[method](ctx)
+      res = await usersServices[method](ctx)
       ctx.body = {
         code: 200,
         msg: `${method}操作成功`,
