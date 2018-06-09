@@ -7,7 +7,7 @@ function subjectTest () {
         .post('/subject/addSubsciption')
         .send({
           user_id: 4,
-          experiment_id: 1
+          experiment_id: 2
         })
         .expect(200)
     })

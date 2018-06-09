@@ -6,8 +6,8 @@ function examinerTest () {
       await request
         .post('/examiner/addExperiment')
         .send({
-          experiment_id: 1,
-          publisher_id: 1,
+          experiment_id: 2,
+          publisher_id: 4,
           publisher_name: 'holy',
           title: 'one experiment',
           type: '皮肤电',
