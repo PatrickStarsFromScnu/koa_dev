@@ -8,7 +8,8 @@ const users = sequelize.define('users', {
     primaryKey: true
   },
   name: Sequelize.STRING,
-  picture: Sequelize.STRING
+  picture: Sequelize.STRING,
+  open_id: Sequelize.STRING
 }, {
   timestamps: false
 })

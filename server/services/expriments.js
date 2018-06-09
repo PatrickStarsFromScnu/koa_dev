@@ -1,4 +1,5 @@
 import Experiments from '../models/experiments'
+import { checkToken } from '../utils/forToken'
 
 const addExperiment = ctx => {
   ctx.verifyParams({
@@ -72,6 +73,13 @@ const addExperiment = ctx => {
 
 // 获取我发布的实验
 const getMyExperiments = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
+  console.log('111111111111')
   ctx.verifyParams({
     user_id: {
       type: 'string',
