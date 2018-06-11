@@ -35,7 +35,7 @@ const login = async ctx => {
   try {
     // 获取 { openid, secret_key }
     res = await request(url)
-    if (!res.openid) return
+    if (!res.openid) return res
     user = await users.find({
       where: {
         open_id: res.openid
@@ -51,9 +51,10 @@ const login = async ctx => {
     }
     // 生成token
     token = signToken({userName: body.userName, openId: res.openid})
-    return token
+    return { token }
   } catch (err) {
     console.log(err)
+    return err
   }
 }
 
