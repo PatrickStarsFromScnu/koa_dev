@@ -4,7 +4,7 @@
       "name": "koa-dev",
       "script": "./server/app.js",
       "instances": 1,
-      "exec_mode": "cluster",
+      "exec_mode": "fork",
       "exec_interpreter": "babel-node",
       "watch": false
     }
