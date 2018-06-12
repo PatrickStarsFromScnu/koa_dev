@@ -3,6 +3,7 @@ const errorHandle = (ctx, next) => {
     if (err.status === 401) {
       ctx.status = 401
       ctx.body = {
+        code: 401,
         error: err.message
       }
     } else {
