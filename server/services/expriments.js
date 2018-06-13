@@ -125,11 +125,11 @@ const deleteMyExperiment = ctx => {
 // 获取所有实验
 const getAllExperiments = ctx => {
   // 验证token
-  // try {
-  //   checkToken(ctx)
-  // } catch (err) {
-  //   return err
-  // }
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
   return Experiments.findAll({
     include: [{
       model: Users
