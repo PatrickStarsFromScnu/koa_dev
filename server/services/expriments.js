@@ -130,7 +130,20 @@ const getAllExperiments = ctx => {
   } catch (err) {
     return err
   }
+  ctx.verifyParams({
+    amount: {
+      type: 'string',
+      required: true
+    },
+    times: {
+      type: 'string',
+      required: true
+    }
+  })
+  const body = ctx.query
   return Experiments.findAll({
+    offset: (parseInt(body.amount) * parseInt(body.times) - 5),
+    limit: parseInt(body.amount),
     include: [{
       model: Users
     }]
@@ -153,6 +166,9 @@ const getExperiment = ctx => {
   })
   const body = ctx.query
   return Experiments.findOne({
+    include: [{
+      model: Users
+    }],
     where: {
       experiment_id: parseInt(body.experiment_id)
     }

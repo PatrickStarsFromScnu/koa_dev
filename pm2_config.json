@@ -6,7 +6,7 @@
       "instances": 1,
       "exec_mode": "fork",
       "exec_interpreter": "babel-node",
-      "watch": false
+      "watch": true
     }
   ]
 }
