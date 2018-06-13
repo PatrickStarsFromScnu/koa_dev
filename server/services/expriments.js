@@ -1,5 +1,6 @@
 import Experiments from '../models/experiments'
 import { checkToken } from '../utils/forToken'
+import Users from '../models/users'
 
 const addExperiment = ctx => {
   // 验证token
@@ -124,12 +125,16 @@ const deleteMyExperiment = ctx => {
 // 获取所有实验
 const getAllExperiments = ctx => {
   // 验证token
-  try {
-    checkToken(ctx)
-  } catch (err) {
-    return err
-  }
-  return Experiments.findAll()
+  // try {
+  //   checkToken(ctx)
+  // } catch (err) {
+  //   return err
+  // }
+  return Experiments.findAll({
+    include: [{
+      model: Users
+    }]
+  })
 }
 
 // 获取特定的实验

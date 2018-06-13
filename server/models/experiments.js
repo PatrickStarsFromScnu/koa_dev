@@ -1,5 +1,6 @@
 import sequelize from './instance'
 import Sequelize from 'sequelize'
+import Users from './users'
 
 // 定义一个expriments model
 const experiments = sequelize.define('experiments', {
@@ -21,5 +22,7 @@ const experiments = sequelize.define('experiments', {
 }, {
   timestamps: false
 })
+
+experiments.belongsTo(Users, {foreignKey: 'publisher_id'})
 
 export default experiments

@@ -20,11 +20,11 @@ app.use(koaStatic(
 
 app.use(errorHandle)
 
-app.use(jwt({
-  secret: config.auth.jwtSecret
-}).unless({
-  path: [/\/login/]
-}))
+// app.use(jwt({
+//   secret: config.auth.jwtSecret
+// }).unless({
+//   path: [/\/login/]
+// }))
 
 app.use(routers.routes()).use(routers.allowedMethods())
 
