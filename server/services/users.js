@@ -48,10 +48,17 @@ const login = async ctx => {
         picture: body.picture,
         open_id: res.openid
       })
+      // 获取该user
+      user = await users.find({
+        open_id: res.openid
+      })
     }
     // 生成token
     token = signToken({userName: body.userName, openId: res.openid})
-    return { token }
+    return {
+      token,
+      userId: user.user_id
+    }
   } catch (err) {
     console.log(err)
     return err

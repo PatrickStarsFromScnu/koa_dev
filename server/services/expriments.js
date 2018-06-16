@@ -43,7 +43,11 @@ const addExperiment = ctx => {
       type: 'string',
       required: true
     },
-    others: 'string'
+    others: 'string',
+    application: {
+      type: 'string',
+      required: true
+    }
   })
   const body = ctx.request.body
   if (body.experiment_id) {
@@ -59,7 +63,8 @@ const addExperiment = ctx => {
       request: body.request || '',
       period: body.period,
       others: body.others || '',
-      time: body.time
+      time: body.time,
+      application: body.application
     })
   } else {
     return Experiments.create({
@@ -73,7 +78,8 @@ const addExperiment = ctx => {
       request: body.request || '',
       period: body.period,
       others: body.others || '',
-      time: body.time
+      time: body.time,
+      application: body.application
     })
   }
 }
@@ -130,6 +136,7 @@ const getAllExperiments = ctx => {
   } catch (err) {
     return err
   }
+  // 类似分页操作，每次要几条，第几次请求
   ctx.verifyParams({
     amount: {
       type: 'string',
@@ -142,7 +149,7 @@ const getAllExperiments = ctx => {
   })
   const body = ctx.query
   return Experiments.findAll({
-    offset: (parseInt(body.amount) * parseInt(body.times) - 5),
+    offset: (parseInt(body.amount) * parseInt(body.times) - parseInt(body.amount)),
     limit: parseInt(body.amount),
     include: [{
       model: Users
@@ -183,8 +190,17 @@ const getExperimentsByType = ctx => {
   } catch (err) {
     return err
   }
+  // 类似分页操作，每次要几条，第几次请求
   ctx.verifyParams({
     type: {
+      type: 'string',
+      required: true
+    },
+    amount: {
+      type: 'string',
+      required: true
+    },
+    times: {
       type: 'string',
       required: true
     }
@@ -192,6 +208,11 @@ const getExperimentsByType = ctx => {
   const body = ctx.query
   console.log(body)
   return Experiments.findAll({
+    offset: (parseInt(body.amount) * parseInt(body.times) - parseInt(body.amount)),
+    limit: parseInt(body.amount),
+    include: [{
+      model: Users
+    }],
     where: {
       type: body.type
     }
