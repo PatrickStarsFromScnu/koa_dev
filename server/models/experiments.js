@@ -25,5 +25,4 @@ const experiments = sequelize.define('experiments', {
 })
 
 experiments.belongsTo(Users, {foreignKey: 'publisher_id'})
-
 export default experiments

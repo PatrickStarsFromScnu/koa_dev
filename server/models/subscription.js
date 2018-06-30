@@ -10,5 +10,6 @@ const subscription = sequelize.define('subscription', {
 
 Experiments.belongsToMany(Users, { through: subscription, foreignKey: 'experiment_id' })
 Users.belongsToMany(Experiments, { through: subscription, foreignKey: 'user_id' })
-
+subscription.belongsTo(Experiments, {foreignKey: 'experiment_id'})
+subscription.belongsTo(Users, {foreignKey: 'user_id'})
 export default subscription

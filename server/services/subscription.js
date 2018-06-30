@@ -1,9 +1,9 @@
 import Subscription from '../models/subscription'
-import Users from '../models/users'
 import Experiments from '../models/experiments'
+import Users from '../models/users'
 import { checkToken } from '../utils/forToken'
 
-const addSubsciption = ctx => {
+const addSubscription = ctx => {
   // 验证token
   try {
     checkToken(ctx)
@@ -27,7 +27,7 @@ const addSubsciption = ctx => {
   })
 }
 
-const getMySubsciption = ctx => {
+const getMySubscription = ctx => {
   // 验证token
   try {
     checkToken(ctx)
@@ -41,17 +41,37 @@ const getMySubsciption = ctx => {
     }
   })
   const body = ctx.query
-  return Users.findAll({
+  return Subscription.findAll({
     include: [{
-      model: Experiments,
-      through: {
-        where: { user_id: parseInt(body.user_id) }
-      }
-    }]
+      model: Experiments
+    }, {
+      model: Users
+    }],
+    where: { user_id: parseInt(body.user_id) }
+  })
+}
+
+const getMySubscriptionId = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
+  ctx.verifyParams({
+    user_id: {
+      type: 'string',
+      required: true
+    }
+  })
+  const body = ctx.query
+  return Subscription.findAll({
+    where: {user_id: parseInt(body.user_id)}
   })
 }
 
 export default {
-  addSubsciption,
-  getMySubsciption
+  addSubscription,
+  getMySubscription,
+  getMySubscriptionId
 }

@@ -19,11 +19,14 @@ const controllerFactory = function (method) {
 }
 
 // 通过工厂函数生成对应的 controller
-const addSubsciption = controllerFactory('addSubsciption')
+const addSubscription = controllerFactory('addSubscription')
 
-const getMySubsciption = controllerFactory('getMySubsciption')
+const getMySubscription = controllerFactory('getMySubscription')
+
+const getMySubscriptionId = controllerFactory('getMySubscriptionId')
 
 export default {
-  addSubsciption,
-  getMySubsciption
+  addSubscription,
+  getMySubscription,
+  getMySubscriptionId
 }

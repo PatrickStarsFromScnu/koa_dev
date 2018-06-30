@@ -7,6 +7,7 @@ const controllerFactory = function (method) {
     try {
       // 根据对应的 method 执行对应 services 接口
       data = await experimentsServices[method](ctx)
+      console.log(data)
       ctx.body = {
         code: 200,
         msg: `${method}操作成功`,
