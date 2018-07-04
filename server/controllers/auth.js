@@ -7,11 +7,7 @@ const controllerFactory = function (method) {
     try {
       // 根据对应的 method 执行对应 services 接口
       data = await usersServices[method](ctx)
-      ctx.body = {
-        code: 200,
-        msg: `${method}操作成功`,
-        data
-      }
+      ctx.body = data
     } catch (err) {
       console.log(`${method} error:`, err)
     }

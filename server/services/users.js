@@ -50,7 +50,9 @@ const login = async ctx => {
       })
       // 获取该user
       user = await users.find({
-        open_id: res.openid
+        where: {
+          open_id: res.openid
+        }
       })
     }
     // 生成token

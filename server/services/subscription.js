@@ -63,9 +63,10 @@ const getMySubscription = ctx => {
   const body = ctx.params
   return Subscription.findAll({
     include: [{
-      model: Experiments
-    }, {
-      model: Users
+      model: Experiments,
+      include: [{
+        model: Users
+      }]
     }],
     where: { user_id: parseInt(body.user_id) }
   })
