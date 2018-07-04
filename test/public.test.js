@@ -4,7 +4,7 @@ function publicTest () {
   describe('start test: public', () => {
     it.only('test getAllExperiments', async () => {
       await request
-        .get('/public/getAllExperiments?amount=5&times=1')
+        .get('/public/experiments?limit=5&offset=0')
         .expect(200)
     })
     it('test getExperiment', async () => {

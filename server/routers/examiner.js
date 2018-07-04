@@ -3,8 +3,8 @@ import examinerController from '../controllers/examiner'
 
 let examinerRouter = new Router()
 
-examinerRouter.post('/addExperiment', examinerController.addExperiment)
-examinerRouter.get('/getMyExperiments', examinerController.getMyExperiments)
-examinerRouter.post('/deleteMyExperiment', examinerController.deleteMyExperiment)
+examinerRouter.post('/experiments', examinerController.addExperiment)
+examinerRouter.delete('/experiments', examinerController.deleteMyExperiment)
+examinerRouter.get('/my_experiments/:user_id', examinerController.getMyExperiments)
 
 export default examinerRouter

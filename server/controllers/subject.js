@@ -25,8 +25,11 @@ const getMySubscription = controllerFactory('getMySubscription')
 
 const getMySubscriptionId = controllerFactory('getMySubscriptionId')
 
+const deleteSubscription = controllerFactory('deleteSubscription')
+
 export default {
   addSubscription,
   getMySubscription,
-  getMySubscriptionId
+  getMySubscriptionId,
+  deleteSubscription
 }

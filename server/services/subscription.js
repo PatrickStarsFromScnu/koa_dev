@@ -27,7 +27,7 @@ const addSubscription = ctx => {
   })
 }
 
-const getMySubscription = ctx => {
+const deleteSubscription = ctx => {
   // 验证token
   try {
     checkToken(ctx)
@@ -35,12 +35,32 @@ const getMySubscription = ctx => {
     return err
   }
   ctx.verifyParams({
+    experiment_id: {
+      type: 'int',
+      required: true
+    },
     user_id: {
-      type: 'string',
+      type: 'int',
       required: true
     }
   })
-  const body = ctx.query
+  const body = ctx.request.body
+  return Subscription.destroy({
+    where: {
+      experiment_id: body.experiment_id,
+      user_id: body.user_id
+    }
+  })
+}
+
+const getMySubscription = ctx => {
+  // 验证token
+  try {
+    checkToken(ctx)
+  } catch (err) {
+    return err
+  }
+  const body = ctx.params
   return Subscription.findAll({
     include: [{
       model: Experiments
@@ -58,13 +78,7 @@ const getMySubscriptionId = ctx => {
   } catch (err) {
     return err
   }
-  ctx.verifyParams({
-    user_id: {
-      type: 'string',
-      required: true
-    }
-  })
-  const body = ctx.query
+  const body = ctx.params
   return Subscription.findAll({
     where: {user_id: parseInt(body.user_id)}
   })
@@ -73,5 +87,6 @@ const getMySubscriptionId = ctx => {
 export default {
   addSubscription,
   getMySubscription,
-  getMySubscriptionId
+  getMySubscriptionId,
+  deleteSubscription
 }

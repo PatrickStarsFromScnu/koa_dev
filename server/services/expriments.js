@@ -92,13 +92,7 @@ const getMyExperiments = ctx => {
   } catch (err) {
     return err
   }
-  ctx.verifyParams({
-    user_id: {
-      type: 'string',
-      required: true
-    }
-  })
-  const body = ctx.query
+  const body = ctx.params
   return Experiments.findAll({
     where: {
       publisher_id: parseInt(body.user_id)
@@ -138,19 +132,19 @@ const getAllExperiments = ctx => {
   }
   // 类似分页操作，每次要几条，第几次请求
   ctx.verifyParams({
-    amount: {
+    limit: {
       type: 'string',
       required: true
     },
-    times: {
+    offset: {
       type: 'string',
       required: true
     }
   })
   const body = ctx.query
   return Experiments.findAll({
-    offset: (parseInt(body.amount) * parseInt(body.times) - parseInt(body.amount)),
-    limit: parseInt(body.amount),
+    offset: parseInt(body.offset),
+    limit: parseInt(body.limit),
     include: [{
       model: Users
     }]
@@ -165,13 +159,7 @@ const getExperiment = ctx => {
   } catch (err) {
     return err
   }
-  ctx.verifyParams({
-    experiment_id: {
-      type: 'string',
-      required: true
-    }
-  })
-  const body = ctx.query
+  const body = ctx.params
   return Experiments.findOne({
     include: [{
       model: Users
@@ -192,15 +180,11 @@ const getExperimentsByType = ctx => {
   }
   // 类似分页操作，每次要几条，第几次请求
   ctx.verifyParams({
-    type: {
+    limit: {
       type: 'string',
       required: true
     },
-    amount: {
-      type: 'string',
-      required: true
-    },
-    times: {
+    offset: {
       type: 'string',
       required: true
     }
@@ -208,13 +192,13 @@ const getExperimentsByType = ctx => {
   const body = ctx.query
   console.log(body)
   return Experiments.findAll({
-    offset: (parseInt(body.amount) * parseInt(body.times) - parseInt(body.amount)),
-    limit: parseInt(body.amount),
+    offset: parseInt(body.offset),
+    limit: parseInt(body.limit),
     include: [{
       model: Users
     }],
     where: {
-      type: body.type
+      type: ctx.params.type
     }
   })
 }
