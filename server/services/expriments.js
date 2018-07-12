@@ -47,7 +47,8 @@ const addExperiment = ctx => {
     application: {
       type: 'string',
       required: true
-    }
+    },
+    content: 'string'
   })
   const body = ctx.request.body
   if (body.experiment_id) {
@@ -64,7 +65,8 @@ const addExperiment = ctx => {
       period: body.period,
       others: body.others || '',
       time: body.time,
-      application: body.application
+      application: body.application,
+      content: body.content || ''
     })
   } else {
     return Experiments.create({
@@ -79,7 +81,8 @@ const addExperiment = ctx => {
       period: body.period,
       others: body.others || '',
       time: body.time,
-      application: body.application
+      application: body.application,
+      content: body.content || ''
     })
   }
 }

@@ -19,7 +19,8 @@ const experiments = sequelize.define('experiments', {
   period: Sequelize.STRING,
   others: Sequelize.STRING,
   time: Sequelize.DATE,
-  application: Sequelize.STRING
+  application: Sequelize.STRING,
+  content: Sequelize.STRING
 }, {
   timestamps: false
 })
