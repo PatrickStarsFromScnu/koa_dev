@@ -83,3 +83,7 @@
   "supertest": "^3.0.0" // http请求测试库，用来请求api接口
 }
 ```
+
+## 最近修改
+util中添加了checksptoken方法，来自网页的请求提供特殊的权限
+对getAllExperiments, getExperiments, getExperimentByType 免去基本权限检验，通过checksptoken来进行检验。
