@@ -6,7 +6,7 @@ function examinerTest () {
       await request
         .post('/examiner/addExperiment')
         .send({
-          publisher_id: 1,
+          publisher_id: 4,
           publisher_name: 'holy',
           title: 'one experiment',
           type: '皮肤电',
@@ -23,6 +23,7 @@ function examinerTest () {
     it.only('test getMyExperiment', async () => {
       await request
         .get('/examiner/getMyExperiment?user_id=1')
+        .set({ Authorization: 'Bearer' })
         .expect(200)
     })
     it('test deleteMyExperiment', async () => {

@@ -2,21 +2,21 @@ import {request} from './register'
 
 function subjectTest () {
   describe('start test: subject', () => {
-    it('test addSubsciption', async () => {
+    it('test addSubscription', async () => {
       await request
-        .post('/subject/addSubsciption')
+        .post('/subject/addSubscription')
         .send({
           user_id: 4,
-          experiment_id: 1
+          experiment_id: 2
         })
         .expect(200)
     })
-    it('test getMySubsciption', async () => {
+    it.only('test getMySubscription', async () => {
       await request
-        .get('/subject/getMySubsciption?user_id=1')
+        .get('/subject/getMySubscription?user_id=3')
         .expect(200)
-      })
     })
+  })
 }
 
 export default subjectTest

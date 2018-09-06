@@ -3,9 +3,11 @@ import Koa from 'koa'
 import koaStatic from 'koa-static'
 import bodyParser from 'koa-bodyparser'
 import parameter from 'koa-parameter'
+import jwt from 'koa-jwt'
 
 import routers from './routers/index'
 import config from './../config/index'
+import errorHandle from './middlewares/errorHandle'
 
 const app = new Koa()
 
@@ -15,6 +17,14 @@ app.use(parameter(app))
 app.use(koaStatic(
   path.join(__dirname, './../static')
 ))
+
+app.use(errorHandle)
+
+app.use(jwt({
+  secret: config.auth.jwtSecret
+}).unless({
+  path: [/\/login/, /\/experiments/, /\/experiments\/:experiment_id/, /\/experiment_types\/:type/]
+}))
 
 app.use(routers.routes()).use(routers.allowedMethods())
 

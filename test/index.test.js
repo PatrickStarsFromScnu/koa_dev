@@ -1,7 +1,9 @@
-import examinerText from './examiner.test'
-import subjectText from './subject.test'
-import publicText from './public.test'
+// import examinerTest from './examiner.test'
+// import subjectTest from './subject.test'
+import publicTest from './public.test'
+// import authTest from './auth.test'
 
-examinerText()
-subjectText()
-publicText()
+// examinerTest()
+// subjectTest()
+publicTest()
+// authTest()

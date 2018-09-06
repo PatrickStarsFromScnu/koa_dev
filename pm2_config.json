@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "koa-dev",
+      "script": "./server/app.js",
+      "instances": 1,
+      "exec_mode": "fork",
+      "exec_interpreter": "babel-node",
+      "watch": true
+    }
+  ]
+}
