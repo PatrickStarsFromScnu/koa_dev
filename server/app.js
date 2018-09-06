@@ -23,7 +23,7 @@ app.use(errorHandle)
 app.use(jwt({
   secret: config.auth.jwtSecret
 }).unless({
-  path: [/\/login/]
+  path: [/\/login/, /\/experiments/, /\/experiments\/:experiment_id/, /\/experiment_types\/:type/]
 }))
 
 app.use(routers.routes()).use(routers.allowedMethods())

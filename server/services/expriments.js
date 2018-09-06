@@ -1,12 +1,18 @@
 import Experiments from '../models/experiments'
-import { checkToken } from '../utils/forToken'
+import { checkToken, checkSpToken } from '../utils/forToken'
 import Users from '../models/users'
+
+/*
+*  getAllExperiments，getExperiment，getExperimentsByType
+*  等接口会对来自网页版的游客，提供特殊通道，通过checksptoken来验证
+*/
 
 const addExperiment = ctx => {
   // 验证token
   try {
     checkToken(ctx)
   } catch (err) {
+    ctx.response.status = 401
     return err
   }
   ctx.verifyParams({
@@ -93,6 +99,7 @@ const getMyExperiments = ctx => {
   try {
     checkToken(ctx)
   } catch (err) {
+    ctx.response.status = 401
     return err
   }
   const body = ctx.params
@@ -109,6 +116,7 @@ const deleteMyExperiment = ctx => {
   try {
     checkToken(ctx)
   } catch (err) {
+    ctx.response.status = 401
     return err
   }
   ctx.verifyParams({
@@ -129,8 +137,9 @@ const deleteMyExperiment = ctx => {
 const getAllExperiments = ctx => {
   // 验证token
   try {
-    checkToken(ctx)
+    checkSpToken(ctx)
   } catch (err) {
+    ctx.response.status = 401
     return err
   }
   // 类似分页操作，每次要几条，第几次请求
@@ -158,8 +167,9 @@ const getAllExperiments = ctx => {
 const getExperiment = ctx => {
   // 验证token
   try {
-    checkToken(ctx)
+    checkSpToken(ctx)
   } catch (err) {
+    ctx.response.status = 401
     return err
   }
   const body = ctx.params
@@ -177,8 +187,9 @@ const getExperiment = ctx => {
 const getExperimentsByType = ctx => {
   // 验证token
   try {
-    checkToken(ctx)
+    checkSpToken(ctx)
   } catch (err) {
+    ctx.response.status = 401
     return err
   }
   // 类似分页操作，每次要几条，第几次请求

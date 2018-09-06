@@ -4,7 +4,8 @@ function publicTest () {
   describe('start test: public', () => {
     it.only('test getAllExperiments', async () => {
       await request
-        .get('/public/experiments?limit=5&offset=0')
+        .get('/api/public/experiments?limit=5&offset=0')
+        .set({ Authorization: 'Bearer U3BlY2lhbFBhc3NDb2Rl' })
         .expect(200)
     })
     it('test getExperiment', async () => {
