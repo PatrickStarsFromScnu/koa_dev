@@ -29,6 +29,7 @@ const checkSpToken = ctx => {
   if (ctx.header.authorization) {
     token = ctx.header.authorization.split(' ')[1]
   }
+  console.log(token)
   if (token !== config.auth.spToken) {
     try {
       jsonwebtoken.verify(token, config.auth.jwtSecret, {
